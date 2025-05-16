@@ -37,11 +37,11 @@ RC(4,0) RC(4,1)         RC(4,3) RC(4,6) RC(4,5)     RC(4,6) RC(4,7) RC(4,8)     
         wakeup-source;
 
         row-gpios
-            = <&xiao_d 0 GPIO_ACTIVE_HIGH>
-            , <&xiao_d 1 GPIO_ACTIVE_HIGH>
-            , <&xiao_d 2 GPIO_ACTIVE_HIGH>
-            , <&xiao_d 3 GPIO_ACTIVE_HIGH>
-            , <&xiao_d 4 GPIO_ACTIVE_HIGH>
+            = <&xiao_d 0 (GPIO_ACTIVE_HIGH)>
+            , <&xiao_d 1 (GPIO_ACTIVE_HIGH)>
+            , <&xiao_d 2 (GPIO_ACTIVE_HIGH)>
+            , <&xiao_d 3 (GPIO_ACTIVE_HIGH)>
+            , <&xiao_d 4 (GPIO_ACTIVE_HIGH)>
             ;
     };
 };
