@@ -7,6 +7,7 @@ requires: [seeed_xiao_ble]
 exposes: []
 features:
   - keys
+  - studio
 siblings:
   - palmctrl_left
   - palmctrl_right
