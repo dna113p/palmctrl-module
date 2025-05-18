@@ -19,11 +19,10 @@
 
     zmk,meta {
         layers = <DEFAULT LOWER RAISE ADJUST>;
-    }
+    };
 
     keymap {
         compatible = "zmk,keymap";
-
         default_layer {
             bindings = <
                 &kp GRAVE  &kp N1   &kp N2   &kp N3   &kp N4   &kp N5                                &kp N6  &kp N7  &kp N8    &kp N9   &kp N0   &kp MINUS
@@ -37,19 +36,19 @@
         lower_layer {
             display-name = "LOWER";
             bindings = <
-                &kp TILDE &kp F1   &kp F2   &kp F3   &kp F4   &kp F5                                 &kp F6   &kp F7   &kp F8   &kp F9   &kp F10  &kp F11
+                &kp TILDE &kp F1   &kp F2   &kp F3   &kp F4   &kp F5                                 &kp F6    &kp F7   &kp F8    &kp F9   &kp F10  &kp F11
                 &trans    &kp EXCL &kp AT   &kp HASH &kp DLLR &kp PRCNT                              &kp CARET &kp AMPS &kp ASTRK &kp LPAR &kp RPAR &kp F12
-                &trans    &kp N1   &kp N2   &kp N3   &kp N4   &kp N5                                 &kp N6   &kp N7   &kp N8    &kp N9   &kp N0   &trans
-                &trans    &trans  &trans   &trans   &trans   &trans                                 &trans   &trans   &trans   &trans   &trans   &trans
-                &trans    &trans                &trans   &trans     &trans           &trans &trans     &trans                      &trans  &trans
+                &trans    &kp N1   &kp N2   &kp N3   &kp N4   &kp N5                                 &kp N6    &kp N7   &kp N8    &kp N9   &kp N0   &trans
+                &trans    &trans   &trans   &trans   &trans   &trans                                 &trans    &trans   &trans    &trans   &trans   &trans
+                &trans    &trans                &trans   &trans     &trans                   &trans &trans     &trans                      &trans   &trans
             >;
         };
 
         raise_layer {
             display-name = "RAISE";
             bindings = <
-                &kp GRAVE &trans   &trans   &trans   &trans   &trans                                 &trans   &trans   &trans   &trans   &trans   &trans
-                &trans    &kp N1   &kp N2   &kp N3   &kp N4   &kp N5                                 &kp N6   &kp N7   &kp N8   &kp N9   &kp N0   &trans
+                &kp GRAVE &trans    &trans    &trans   &trans   &trans                               &trans   &trans   &trans   &trans   &trans   &trans
+                &trans    &kp N1    &kp N2    &kp N3   &kp N4   &kp N5                               &kp N6   &kp N7   &kp N8   &kp N9   &kp N0   &trans
                 &trans    &kp MINUS &kp EQUAL &kp LBKT &kp RBKT &kp BSLH                             &kp F1   &kp F2   &kp F3   &kp F4   &kp F5   &kp F6
                 &trans    &kp UNDER &kp PLUS  &kp LBRC &kp RBRC &kp PIPE                             &kp F7   &kp F8   &kp F9   &kp F10  &kp F11  &kp F12
                 &trans    &trans               &trans   &trans     &trans           &trans &trans     &trans                      &trans  &trans
@@ -59,11 +58,11 @@
         adjust_layer {
             display-name = "ADJUST";
             bindings = <
-                &bootloader &none  &none  &none  &none  &none                                       &none  &none  &none  &none  &none  &bootloader
-                &none       &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4        &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &none
-                &none       &none  &none  &none  &none  &none                                       &none  &none  &none  &none  &none  &none
-                &none       &none  &none  &none  &none  &bt BT_CLR                                  &bt BT_CLR &none  &none  &none  &none  &none
-                &none       &none              &none  &trans  &none              &none  &trans  &none                       &none  &none
+                &bootloader &sys_reset   &none        &none        &none        &studio_unlock      &studio_unlock &none        &none        &none        &sys_reset   &bootloader
+                &none       &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4        &bt BT_SEL 0   &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &none
+                &none       &none        &none        &none        &none        &none               &none          &none        &none        &none        &none        &none
+                &none       &none        &none        &none        &none        &bt BT_CLR          &bt BT_CLR     &none        &none        &none        &none        &none
+                &none       &none                     &none        &trans       &none               &none          &trans       &none                     &none        &none
             >;
         };
     };
