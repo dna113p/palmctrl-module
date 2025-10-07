@@ -6,10 +6,9 @@
 #define DEFAULT     0
 #define LOWER       1
 #define RAISE       2
-#define NUMPAD      3
+#define BOTH        3
 #define LOWER_TAP   4
 #define RAISE_TAP   5
-#define ADJUST      6
 
 #define TAP_TERM_MS 200
 
@@ -20,7 +19,7 @@
             label = "TAP_DANCE_LOWER";
             #binding-cells = <0>;
             tapping-term-ms = <TAP_TERM_MS>;
-            bindings = <&mo LOWER>, <&mo LOWER_TAP>;
+            bindings = <&mo LOWER>, <&sl LOWER_TAP>;
         };
 
         td_raise: tap_dance_raise {
@@ -30,26 +29,19 @@
             tapping-term-ms = <TAP_TERM_MS>;
             bindings = <&mo RAISE>, <&mo RAISE_TAP>;
         };
-
-        td_raise_adjust: tap_dance_raise_adjust {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_RAISE_ADJUST";
-            #binding-cells = <0>;
-            tapping-term-ms = <TAP_TERM_MS>;
-            bindings = <&mo RAISE>, <&mo ADJUST>;
-        };
     };
 
     conditional_layers {
         compatible = "zmk,conditional-layers";
         tri_layer {
             if-layers = <LOWER RAISE>;
-            then-layer = <NUMPAD>;
+            then-layer = <BOTH>;
         };
     };
 
     zmk,meta {
-        layers = <DEFAULT LOWER RAISE NUMPAD LOWER_TAP RAISE_TAP ADJUST>;
+        //        1       2     3     4    5
+        layers = <DEFAULT LOWER RAISE BOTH LOWER_TAP RAISE_TAP>;
     };
 
     keymap {
@@ -62,16 +54,16 @@
                 &kp TAB    &kp Q    &kp W    &kp E    &kp R    &kp T                                     &kp Y      &kp U      &kp I      &kp O     &kp P     &kp BSPC
                 &kp ESC    &kp A    &kp S    &kp D    &kp F    &kp G                                     &kp H      &kp J      &kp K      &kp L     &kp SEMI  &kp SQT
                 &kp LSHFT  &kp Z    &kp X    &kp C    &kp V    &kp B                                     &kp N      &kp M      &kp COMMA  &kp DOT   &kp FSLH  &kp RSHFT
-                &kp LCTRL  &kp LGUI          &kp LALT &td_lower &td_raise                      &td_raise &kp SPACE  &kp RALT              &kp RGUI  &kp RCTRL
+                &kp LCTRL  &kp LGUI          &kp LALT &td_lower &td_raise                &td_raise &lt LOWER SPACE  &kp RALT              &kp RGUI  &kp RCTRL
             >;
         };
 
         lower_layer {
             display-name = "LOWER";
             bindings = <
-                &trans     &kp F1   &kp F2   &kp F3   &kp F4   &kp F5                                    &kp F6     &kp F7     &kp F8     &kp MINUS &kp EQUAL &kp DEL
+                &trans     &kp F1   &kp F2   &kp F3   &kp F4   &kp F5                                    &trans     &trans     &trans     &kp MINUS &kp EQUAL &kp DEL
                 &trans     &kp F6   &kp F7   &kp F8   &kp F9   &kp F10                                   &kp CARET  &kp AMPS   &kp ASTRK  &kp LBKT  &kp RBKT  &kp BSLH 
-                &kp CAPS   &kp F11  &kp F12  &trans   &trans   &trans                                    &kp N6     &kp N7     &kp N8     &kp N9    &kp N0    &kp RET
+                &kp CAPS   &kp F11  &kp F12  &trans   &trans   &trans                                    &trans     &trans     &trans     &trans    &trans    &kp RET
                 &trans     &trans   &trans   &trans   &trans   &trans                                    &trans     &trans     &trans     &trans    &trans    &trans
                 &trans     &trans            &trans   &trans   &trans                          &trans    &trans     &trans                &trans    &trans
             >;
@@ -80,20 +72,20 @@
         raise_layer {
             display-name = "RAISE";
             bindings = <
-                &kp GRAVE  &trans    &trans    &trans   &trans   &trans                                  &trans     &trans     &trans     &trans    &trans    &trans
-                &trans     &kp N1    &kp N2    &kp N3   &kp N4   &kp N5                                  &kp N6     &kp N7     &kp N8     &kp N9    &kp N0    &trans
-                &trans     &kp MINUS &kp EQUAL &kp LBKT &kp RBKT &kp BSLH                                &kp LEFT   &kp DOWN   &kp UP     &kp RIGHT &trans    &trans
-                &trans     &kp UNDER &kp PLUS  &kp LBRC &kp RBRC &kp PIPE                                &kp F7     &kp F8     &kp F9     &kp F10   &kp F11   &kp F12
-                &trans     &trans             &trans   &trans   &trans                          &trans   &trans     &trans                &trans    &trans
+                &kp GRAVE  &trans    &trans    &trans   &trans    &trans                                  &trans     &trans     &trans     &trans    &trans    &trans
+                &trans     &trans    &trans    &kp UP   &trans    &trans                                  &trans     &trans     &trans     &trans    &trans    &trans
+                &kp RET    &trans    &kp LEFT  &kp DOWN &kp RIGHT &trans                                  &kp LEFT   &kp DOWN   &kp UP     &kp RIGHT &trans    &kp RET
+                &trans     &trans    &trans    &trans   &trans    &trans                                  &trans     &trans     &trans     &trans    &trans    &trans
+                &trans     &trans             &trans   &trans     &trans                          &trans   &trans     &trans                &trans    &trans
             >;
         };
 
-        numpad_layer {
-            display-name = "NUMPAD";
+        both_layer {
+            display-name = "BOTH";
             bindings = <
                 &trans     &trans   &trans   &trans   &trans   &trans                                    &trans     &kp KP_NLCK &kp KP_SLASH &kp KP_ASTERISK &kp KP_MINUS &trans
                 &trans     &trans   &trans   &trans   &trans   &trans                                    &trans     &kp KP_N7   &kp KP_N8    &kp KP_N9       &kp KP_PLUS  &trans
-                &trans     &trans   &trans   &trans   &trans   &trans                                    &trans     &kp KP_N4   &kp KP_N5    &kp KP_N6       &kp KP_PLUS  &trans
+                &trans     &trans   &trans   &trans   &trans   &trans                                    &trans     &kp KP_N4   &kp KP_N5    &kp KP_N6       &kp KP_PLUS  &kp RET
                 &trans     &trans   &trans   &trans   &trans   &trans                                    &trans     &kp KP_N1   &kp KP_N2    &kp KP_N3       &kp KP_ENTER &trans
                 &trans     &trans            &trans   &trans   &trans                          &trans    &kp KP_N0  &kp KP_DOT             &trans          &trans
             >;
@@ -113,19 +105,8 @@
         raise_tap_layer {
             display-name = "RAISE_TAP";
             bindings = <
-                &trans     &trans   &trans   &trans   &trans   &trans                                    &trans     &trans     &trans     &trans    &trans    &trans
-                &trans     &trans   &trans   &trans   &trans   &trans                                    &trans     &kp HOME   &kp PG_DN  &kp PG_UP &kp END   &trans
-                &trans     &trans   &trans   &trans   &trans   &trans                                    &trans     &kp LEFT   &kp DOWN   &kp UP    &kp RIGHT &trans
-                &trans     &trans   &trans   &trans   &trans   &trans                                    &trans     &trans     &trans     &trans    &trans    &trans
-                &trans     &trans            &trans   &trans   &trans                          &trans    &trans     &trans                &trans    &trans
-            >;
-        };
-
-        adjust_layer {
-            display-name = "ADJUST";
-            bindings = <
                 &bootloader &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4            &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &bootloader
-                &sys_reset  &none        &none        &none        &none        &studio_unlock          &studio_unlock &none      &none        &none        &none        &sys_reset
+                &sys_reset  &none        &none        &none        &sys_reset   &studio_unlock          &studio_unlock &sys_reset      &none        &none        &none        &sys_reset
                 &none       &none        &none        &none        &none        &none                   &none        &none        &none        &none        &none        &none
                 &none       &none        &none        &none        &none        &bt BT_CLR              &bt BT_CLR   &none        &none        &none        &none        &none
                 &none       &none                     &none        &trans       &none                   &none        &trans       &none                     &none        &none
