@@ -64,11 +64,11 @@
         raise_layer {
             display-name = "RAISE";
             bindings = <
-                &kp GRAVE  &trans    &trans    &trans   &trans    &trans                                  &trans     &trans     &trans     &trans    &trans    &trans
-                &trans     &trans    &trans    &kp UP   &trans    &trans                                  &trans     &trans     &trans     &trans    &trans    &trans
-                &kp RET    &trans    &kp LEFT  &kp DOWN &kp RIGHT &trans                                  &kp LEFT   &kp DOWN   &kp UP     &kp RIGHT &trans    &kp RET
-                &trans     &trans    &trans    &trans   &trans    &trans                                  &trans     &trans     &trans     &trans    &trans    &trans
-                &trans     &trans             &trans   &trans     &trans                                  &trans     &trans     &trans               &trans    &trans
+                &kp GRAVE  &trans    &kp C_MUTE &trans   &trans    &trans                                  &trans     &trans     &trans     &kp C_VOL_DN &kp C_VOL_UP &trans
+                &trans     &kp C_PREV &kp C_PP  &kp UP   &kp C_NEXT &trans                                  &trans     &trans     &trans     &trans       &trans       &trans
+                &kp RET    &trans    &kp LEFT  &kp DOWN &kp RIGHT &trans                                  &kp LEFT   &kp DOWN   &kp UP     &kp RIGHT    &trans       &kp RET
+                &trans     &trans    &trans    &trans   &trans    &trans                                  &trans     &trans     &trans     &trans       &trans       &trans
+                &trans     &trans             &trans   &trans     &trans                                  &trans     &trans     &trans                  &trans       &trans
             >;
         };
 
