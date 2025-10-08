@@ -30,33 +30,6 @@
             bindings = <&mo RAISE>, <&mo RAISE>, <&sl BT_CTRL>;
         };
 
-        slow_mmv: slow_mouse_move {
-            compatible = "zmk,behavior-input-two-axis";
-            #binding-cells = <1>;
-            bindings = <&mmv_input_listener>;
-            input-processors = <&zip_xy_scaler { multiplier = <0.5>; }>;
-        };
-
-        fast_mmv: fast_mouse_move {
-            compatible = "zmk,behavior-input-two-axis";
-            #binding-cells = <1>;
-            bindings = <&mmv_input_listener>;
-            input-processors = <&zip_xy_scaler { multiplier = <2.0>; }>;
-        };
-
-        slow_normal_mm: slow_normal_mouse_move_mod_morph {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <1>;
-            bindings = <&mmv>, <&slow_mmv>;
-            mods = <(MOD_LCTL | MOD_RCTL)>;
-        };
-
-        mm: mouse_move_mod_morph {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <1>;
-            bindings = <&slow_normal_mm>, <&fast_mmv>;
-            mods = <(MOD_LSFT | MOD_RSFT)>;
-        };
     };
 
 
@@ -119,8 +92,8 @@
             display-name = "MOUSE";
             bindings = <
                 &trans  &trans  &trans         &trans         &trans         &trans                      &trans         &mkp MB4       &mkp MB5      &trans         &trans    &trans
-                &trans  &trans  &trans         &mm MOVE_UP    &trans         &trans                      &trans         &mm MOVE_UP    &msc SCRL_UP  &trans         &trans    &trans
-                &trans  &trans  &mm MOVE_LEFT  &mm MOVE_DOWN  &mm MOVE_RIGHT &trans                      &mm MOVE_LEFT  &mm MOVE_DOWN  &mm MOVE_UP   &mm MOVE_RIGHT &trans    &trans
+                &trans  &trans  &trans         &mmv MOVE_UP   &trans         &trans                      &trans         &mmv MOVE_UP   &msc SCRL_UP  &trans         &trans    &trans
+                &trans  &trans  &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT &trans                      &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_UP  &mmv MOVE_RIGHT &trans    &trans
                 &trans  &trans  &trans         &mkp MB3       &mkp MB2       &mkp MB3                    &mkp MB1       &mkp MB2       &mkp MB3      &trans         &trans    &trans
 
                 &trans  &trans                 &trans         &trans         &trans                      &trans         &trans         &trans                       &trans    &trans
