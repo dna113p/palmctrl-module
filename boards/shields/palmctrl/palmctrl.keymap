@@ -31,24 +31,44 @@
             bindings = <&mo RAISE>, <&mo RAISE>, <&sl BT_CTRL>;
         };
 
-        scaled_mmv: scaled_mouse_move {
+        slow_mmv: slow_mouse_move {
             compatible = "zmk,behavior-input-two-axis";
             #binding-cells = <1>;
             bindings = <&mmv_input_listener>;
-            input-processors = <&xy_scaler>;
+            input-processors = <&slow_xy_scaler>;
+        };
+
+        fast_mmv: fast_mouse_move {
+            compatible = "zmk,behavior-input-two-axis";
+            #binding-cells = <1>;
+            bindings = <&mmv_input_listener>;
+            input-processors = <&fast_xy_scaler>;
+        };
+
+        slow_normal_mmv_morph: slow_normal_mouse_move_mod_morph {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <1>;
+            bindings = <&mmv>, <&slow_mmv>;
+            mods = <(MOD_LCTL | MOD_RCTL)>;
         };
 
         mmv_morph: mouse_move_mod_morph {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <1>;
-            bindings = <&mmv>, <&scaled_mmv>;
-            mods = <(MOD_LCTL | MOD_RCTL)>;
+            bindings = <&slow_normal_mmv_morph>, <&fast_mmv>;
+            mods = <(MOD_LSFT | MOD_RSFT)>;
         };
     };
 
     input-processors {
         compatible = "zmk,input-processors";
-        xy_scaler: xy_scaler {
+
+        slow_xy_scaler: slow_xy_scaler {
+            compatible = "zmk,input-processor-scaler";
+            multiplier = <0.5>;
+        };
+
+        fast_xy_scaler: fast_xy_scaler {
             compatible = "zmk,input-processor-scaler";
             multiplier = <2.0>;
         };
