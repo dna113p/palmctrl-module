@@ -110,11 +110,11 @@
         mouse_layer {
             display-name = "MOUSE";
             bindings = <
-                &trans  &trans  &trans              &trans               &trans               &trans           &trans              &mkp MB4            &mkp MB5          &trans    &trans    &trans
-                &trans  &trans  &trans              &mmv_morph MOVE_UP   &trans               &trans           &trans              &mmv_morph MOVE_UP  &msc SCRL_UP      &trans    &trans    &trans
-                &trans  &trans  &mmv_morph MOVE_LEFT &mmv_morph MOVE_DOWN &mmv_morph MOVE_RIGHT &trans           &mmv_morph MOVE_LEFT &mmv_morph MOVE_DOWN &mmv_morph MOVE_UP &mmv_morph MOVE_RIGHT   &trans    &trans
-                &trans  &trans  &trans              &trans               &trans               &trans           &mkp LCLK           &mkp MCLK           &mkp RCLK          &trans    &trans    &trans
-                &trans  &trans                      &trans               &trans               &trans           &trans              &trans              &trans                  &trans    &trans
+                &trans  &trans  &trans              &trans               &trans                 &trans       &trans               &mkp MB4             &mkp MB5          &trans    &trans    &trans
+                &trans  &trans  &trans              &mmv_morph MOVE_UP   &trans                 &trans       &trans               &mmv_morph MOVE_UP   &msc SCRL_UP      &trans    &trans    &trans
+                &trans  &trans  &mmv_morph MOVE_LEFT &mmv_morph MOVE_DOWN &mmv_morph MOVE_RIGHT &trans       &mmv_morph MOVE_LEFT &mmv_morph MOVE_DOWN &mmv_morph MOVE_UP &mmv_morph MOVE_RIGHT   &trans    &trans
+                &trans  &trans  &trans              &trans               &trans                 &trans       &mkp LCLK            &mkp MCLK            &mkp RCLK          &trans    &trans    &trans
+                &trans  &trans                      &trans               &trans                 &trans       &trans               &trans               &trans                  &trans    &trans
             >;
         };
 
