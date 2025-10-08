@@ -44,17 +44,17 @@
             input-processors = <&zip_xy_scaler { multiplier = <2.0>; }>;
         };
 
-        slow_normal_mmv_morph: slow_normal_mouse_move_mod_morph {
+        slow_normal_mm: slow_normal_mouse_move_mod_morph {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <1>;
             bindings = <&mmv>, <&slow_mmv>;
             mods = <(MOD_LCTL | MOD_RCTL)>;
         };
 
-        mmv_morph: mouse_move_mod_morph {
+        mm: mouse_move_mod_morph {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <1>;
-            bindings = <&slow_normal_mmv_morph>, <&fast_mmv>;
+            bindings = <&slow_normal_mm>, <&fast_mmv>;
             mods = <(MOD_LSFT | MOD_RSFT)>;
         };
     };
@@ -94,7 +94,7 @@
         raise_layer {
             display-name = "RAISE";
             bindings = <
-                &kp GRAVE  &trans    &trans    &trans   &trans    &trans                                  &trans     &trans     &trans     &kp C_VOL_DN &kp C_VOL_UP &kp C_MUTE
+                &trans     &trans    &trans    &trans   &trans    &trans                                  &trans     &trans     &trans     &kp C_VOL_DN &kp C_VOL_UP &kp C_MUTE
                 &trans     &trans    &trans    &kp UP   &trans    &trans                                  &trans     &trans     &trans     &trans       &trans       &trans
                 &trans     &trans    &kp LEFT  &kp DOWN &kp RIGHT &trans                                  &kp LEFT   &kp DOWN   &kp UP     &kp RIGHT    &trans       &kp RET
                 &trans     &trans    &trans    &trans   &trans    &trans                                  &trans     &trans     &trans     &trans       &trans       &trans
@@ -118,12 +118,12 @@
         mouse_layer {
             display-name = "MOUSE";
             bindings = <
-                &trans  &trans  &trans              &trans               &trans                 &trans       &trans               &mkp MB4             &mkp MB5          &trans    &trans    &trans
-                &trans  &trans  &trans              &mmv_morph MOVE_UP   &trans                 &trans       &trans               &mmv_morph MOVE_UP   &msc SCRL_UP      &trans    &trans    &trans
-                &trans  &trans  &mmv_morph MOVE_LEFT &mmv_morph MOVE_DOWN &mmv_morph MOVE_RIGHT &trans       &mmv_morph MOVE_LEFT &mmv_morph MOVE_DOWN &mmv_morph MOVE_UP &mmv_morph MOVE_RIGHT   &trans    &trans
-                &trans  &trans  &trans              &trans               &trans                 &trans       &mkp LCLK            &mkp MCLK            &mkp RCLK          &trans    &trans    &trans
+                &trans  &trans  &trans         &trans         &trans         &trans                      &trans         &mkp MB4       &mkp MB5      &trans         &trans    &trans
+                &trans  &trans  &trans         &mm MOVE_UP    &trans         &trans                      &trans         &mm MOVE_UP    &msc SCRL_UP  &trans         &trans    &trans
+                &trans  &trans  &mm MOVE_LEFT  &mm MOVE_DOWN  &mm MOVE_RIGHT &trans                      &mm MOVE_LEFT  &mm MOVE_DOWN  &mm MOVE_UP   &mm MOVE_RIGHT &trans    &trans
+                &trans  &trans  &trans         &mkp MB3       &mkp MB2       &mkp MB3                    &mkp MB1       &mkp MB2       &mkp MB3      &trans         &trans    &trans
 
-                &trans  &trans                      &trans               &trans                 &trans       &trans               &trans               &trans                  &trans    &trans
+                &trans  &trans                 &trans         &trans         &trans                      &trans         &trans         &trans                       &trans    &trans
             >;
         };
 
