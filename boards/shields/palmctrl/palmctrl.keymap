@@ -34,14 +34,14 @@
             compatible = "zmk,behavior-input-two-axis";
             #binding-cells = <1>;
             bindings = <&mmv_input_listener>;
-            input-processors = <&slow_xy_scaler>;
+            input-processors = <&zip_xy_scaler { multiplier = <0.5>; }>;
         };
 
         fast_mmv: fast_mouse_move {
             compatible = "zmk,behavior-input-two-axis";
             #binding-cells = <1>;
             bindings = <&mmv_input_listener>;
-            input-processors = <&fast_xy_scaler>;
+            input-processors = <&zip_xy_scaler { multiplier = <2.0>; }>;
         };
 
         slow_normal_mmv_morph: slow_normal_mouse_move_mod_morph {
@@ -58,21 +58,6 @@
             mods = <(MOD_LSFT | MOD_RSFT)>;
         };
     };
-
-    input-processors {
-        compatible = "zmk,input-processors";
-
-        slow_xy_scaler: slow_xy_scaler {
-            compatible = "zmk,input-processor-scaler";
-            multiplier = <0.5>;
-        };
-
-        fast_xy_scaler: fast_xy_scaler {
-            compatible = "zmk,input-processor-scaler";
-            multiplier = <2.0>;
-        };
-    };
-
 
 
     zmk,meta {
