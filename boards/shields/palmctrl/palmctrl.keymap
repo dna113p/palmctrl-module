@@ -20,14 +20,14 @@
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <TAP_TERM_MS>;
-            bindings = <&mo LOWER>, <&sl MOUSE>;
+            bindings = <&mo LOWER>, <&mo MOUSE>;
         };
 
         td_raise: tap_dance_raise {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <TAP_TERM_MS>;
-            bindings = <&mo RAISE>, <&mo RAISE>, <&sl BT_CTRL>;
+            bindings = <&mo RAISE>, <&mo NUMPAD>, <&sl BT_CTRL>;
         };
 
     };
@@ -57,7 +57,7 @@
             bindings = <
                 &trans     &kp F1   &kp F2   &kp F3   &kp F4   &kp F5                                    &trans     &trans     &trans     &kp MINUS &kp EQUAL &kp DEL
                 &trans     &kp F6   &kp F7   &kp F8   &kp F9   &kp F10                                   &trans     &trans     &trans     &kp LBKT  &kp RBKT  &kp BSLH 
-                &kp CAPS   &kp F11  &kp F12  &trans   &trans   &trans                                    &trans     &trans     &trans     &trans    &trans    &kp RET
+                &trans     &kp F11  &kp F12  &trans   &trans   &trans                                    &trans     &trans     &trans     &trans    &trans    &kp RET
                 &trans     &trans   &trans   &trans   &trans   &trans                                    &trans     &trans     &trans     &trans    &trans    &trans
 
                 &trans     &trans            &trans   &trans   &trans                                    &trans     &trans     &trans               &trans    &trans
