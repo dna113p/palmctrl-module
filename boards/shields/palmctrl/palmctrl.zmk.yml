@@ -3,10 +3,11 @@ id: palmctrl
 name: PalmCtrl
 type: shield
 url: https://github.com/dna113p/palmctrl/
-requires: [seeed_xiao_ble]
+requires: [cosmos_lemon_wireless]
 exposes: []
 features:
   - keys
+  - underglow
 siblings:
   - palmctrl_left
   - palmctrl_right

@@ -18,3 +18,10 @@
 #     artifact-name: corne_left_with_studio
 #
 ---
+include:
+  - board: cosmos_lemon_wireless
+    shield: palmctrl_left
+  - board: cosmos_lemon_wireless
+    shield: palmctrl_right
+  - board: cosmos_lemon_wireless
+    shield: settings_reset
