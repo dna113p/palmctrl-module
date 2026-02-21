@@ -3,6 +3,7 @@
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/outputs.h>
 #include <dt-bindings/zmk/pointing.h>
+#include <dt-bindings/zmk/rgb.h>
 #include <input/processors.dtsi>
 
 #define DEFAULT     0
@@ -11,6 +12,8 @@
 #define NUMPAD      3
 #define MOUSE       4
 #define BT_CTRL     5
+#define RGB_CTRL    6
+#define GAMING      7
 
 #define TAP_TERM_MS 200
 
@@ -30,11 +33,27 @@
             bindings = <&mo RAISE>, <&mo NUMPAD>, <&sl BT_CTRL>;
         };
 
+        td_rgb: tap_dance_rgb {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <TAP_TERM_MS>;
+            bindings = <&none>, <&mo RGB_CTRL>;
+        };
+
     };
 
+    combos {
+        compatible = "zmk,combos";
+        combo_gaming {
+            timeout-ms = <50>;
+            key-positions = <49 53>;
+            bindings = <&tog GAMING>;
+            layers = <DEFAULT GAMING>;
+        };
+    };
 
     zmk,meta {
-        layers = <DEFAULT LOWER RAISE NUMPAD MOUSE BT_CTRL>;
+        layers = <DEFAULT LOWER RAISE NUMPAD MOUSE BT_CTRL RGB_CTRL GAMING>;
     };
 
     keymap {
@@ -48,14 +67,14 @@
                 &kp ESC    &kp A    &kp S    &kp D     &kp F     &kp G                                    &kp H      &kp J      &kp K      &kp L     &kp SEMI  &kp SQT
                 &kp LSHFT  &kp Z    &kp X    &kp C     &kp V     &kp B                                    &kp N      &kp M      &kp COMMA  &kp DOT   &kp FSLH  &kp RSHFT
 
-                &kp LCTRL  &kp LGUI &none    &kp LALT  &td_lower &td_raise                                &td_raise  &kp SPACE  &kp RALT   &none     &kp RGUI  &kp RCTRL
+                &kp LCTRL  &kp LGUI &td_rgb         &kp LALT  &td_lower &td_raise                             &td_raise  &kp SPACE  &kp RALT   &td_rgb         &kp RGUI  &kp RCTRL
             >;
         };
 
         lower_layer {
             display-name = "LOWER";
             bindings = <
-                &trans     &kp F1   &kp F2   &kp F3   &kp F4   &kp F5                                    &trans     &trans     &trans     &kp MINUS &kp EQUAL &kp DEL
+                &kp DEL    &kp F1   &kp F2   &kp F3   &kp F4   &kp F5                                    &trans     &trans     &trans     &kp MINUS &kp EQUAL &kp DEL
                 &trans     &kp F6   &kp F7   &kp F8   &kp F9   &kp F10                                   &trans     &trans     &trans     &kp LBKT  &kp RBKT  &kp BSLH 
                 &trans     &kp F11  &kp F12  &trans   &trans   &trans                                    &trans     &trans     &trans     &trans    &trans    &kp RET
                 &trans     &trans   &trans   &trans   &trans   &trans                                    &trans     &trans     &trans     &trans    &trans    &trans
@@ -109,6 +128,35 @@
                 &none       &none        &none        &none        &bt BT_CLR_ALL &bt BT_CLR              &bt BT_CLR   &bt BT_CLR_ALL &none        &none        &none        &none
 
                 &none       &none        &none        &none        &trans         &none                   &none        &trans         &none        &none        &none        &none
+            >;
+        };
+
+        rgb_ctrl_layer {
+            display-name = "RGB";
+            bindings = <
+                // Mirrored on both sides - BRD/BRI/TOG pattern like volume controls
+                &rgb_ug RGB_TOG &rgb_ug RGB_BRI &rgb_ug RGB_BRD &trans          &trans          &trans              &trans          &trans          &trans          &rgb_ug RGB_BRD &rgb_ug RGB_BRI &rgb_ug RGB_TOG
+                &trans          &rgb_ug RGB_HUI &rgb_ug RGB_HUD &trans          &trans          &trans              &trans          &trans          &trans          &rgb_ug RGB_HUD &rgb_ug RGB_HUI &trans
+                &trans          &rgb_ug RGB_SAI &rgb_ug RGB_SAD &trans          &trans          &trans              &trans          &trans          &trans          &rgb_ug RGB_SAD &rgb_ug RGB_SAI &trans
+                &trans          &rgb_ug RGB_EFF &rgb_ug RGB_EFR &trans          &trans          &trans              &trans          &trans          &trans          &rgb_ug RGB_EFR &rgb_ug RGB_EFF &trans
+
+                &trans          &rgb_ug RGB_SPI &rgb_ug RGB_SPD &trans          &trans          &trans              &trans          &trans          &trans          &rgb_ug RGB_SPD &rgb_ug RGB_SPI &trans
+            >;
+        };
+        gaming_layer {
+            display-name = "GAMING";
+            bindings = <
+                // Row 0: number row - pass through left, exit gaming right
+                &trans  &trans  &trans  &trans  &trans  &trans      &tog GAMING  &tog GAMING  &tog GAMING  &tog GAMING  &tog GAMING  &tog GAMING
+                // Row 1: QWERTY top - pass through left, exit gaming right
+                &trans  &trans  &trans  &trans  &trans  &trans      &tog GAMING  &tog GAMING  &tog GAMING  &tog GAMING  &tog GAMING  &tog GAMING
+                // Row 2: home row - pass through left, exit gaming right
+                &trans  &trans  &trans  &trans  &trans  &trans      &tog GAMING  &tog GAMING  &tog GAMING  &tog GAMING  &tog GAMING  &tog GAMING
+                // Row 3: bottom row - pass through left, exit gaming right
+                &trans  &trans  &trans  &trans  &trans  &trans      &tog GAMING  &tog GAMING  &tog GAMING  &tog GAMING  &tog GAMING  &tog GAMING
+
+                // Row 4: thumb row - remap left thumb cluster, exit gaming right
+                &trans  &trans  &kp F14  &trans  &kp SPACE  &kp F13      &tog GAMING  &tog GAMING  &tog GAMING  &tog GAMING  &tog GAMING  &tog GAMING
             >;
         };
     };
