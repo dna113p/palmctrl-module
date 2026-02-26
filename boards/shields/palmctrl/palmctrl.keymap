@@ -146,16 +146,13 @@
         gaming_layer {
             display-name = "GAMING";
             bindings = <
-                // Row 0: number row - pass through left, exit gaming right
-                &trans  &trans  &trans  &trans  &trans  &trans      &tog GAMING  &tog GAMING  &tog GAMING  &tog GAMING  &tog GAMING  &tog GAMING
-                // Row 1: QWERTY top - pass through left, exit gaming right
-                &trans  &trans  &trans  &trans  &trans  &trans      &tog GAMING  &tog GAMING  &tog GAMING  &tog GAMING  &tog GAMING  &tog GAMING
-                // Row 2: home row - pass through left, exit gaming right
-                &trans  &trans  &trans  &trans  &trans  &trans      &tog GAMING  &tog GAMING  &tog GAMING  &tog GAMING  &tog GAMING  &tog GAMING
-                // Row 3: bottom row - pass through left, exit gaming right
-                &trans  &trans  &trans  &trans  &trans  &trans      &tog GAMING  &tog GAMING  &tog GAMING  &tog GAMING  &tog GAMING  &tog GAMING
+                // Rows 0-3: left cols shifted right by 1, col 5 wraps to col 1 (ESDF = WASD)
+                &kp GRAVE  &kp N5  &kp N1  &kp N2  &kp N3  &kp N4      &tog GAMING  &tog GAMING  &tog GAMING  &tog GAMING  &tog GAMING  &tog GAMING
+                &kp TAB    &kp T   &kp Q   &kp W   &kp E   &kp R       &tog GAMING  &tog GAMING  &tog GAMING  &tog GAMING  &tog GAMING  &tog GAMING
+                &kp ESC    &kp G   &kp A   &kp S   &kp D   &kp F       &tog GAMING  &tog GAMING  &tog GAMING  &tog GAMING  &tog GAMING  &tog GAMING
+                &kp LSHFT  &kp B   &kp Z   &kp X   &kp C   &kp V       &tog GAMING  &tog GAMING  &tog GAMING  &tog GAMING  &tog GAMING  &tog GAMING
 
-                // Row 4: thumb row - remap left thumb cluster, exit gaming right
+                // Row 4: thumb row - custom gaming remaps, exit gaming right
                 &trans  &trans  &kp F14  &trans  &kp SPACE  &kp F13      &tog GAMING  &tog GAMING  &tog GAMING  &tog GAMING  &tog GAMING  &tog GAMING
             >;
         };
