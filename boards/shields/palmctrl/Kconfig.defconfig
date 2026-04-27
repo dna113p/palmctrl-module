@@ -1,3 +1,6 @@
+# Copyright (c) 2022 The ZMK Contributors
+# SPDX-License-Identifier: MIT
+
 if SHIELD_PALMCTRL_LEFT
 
 config ZMK_KEYBOARD_NAME
@@ -6,11 +9,25 @@ config ZMK_KEYBOARD_NAME
 config ZMK_SPLIT_ROLE_CENTRAL
 	default y
 
-endif
+endif # SHIELD_PALMCTRL_LEFT
 
 if SHIELD_PALMCTRL_LEFT || SHIELD_PALMCTRL_RIGHT
 
 config ZMK_SPLIT
 	default y
 
-endif
+config SPI
+	default y
+
+config ZMK_RGB_UNDERGLOW
+	default y
+	select WS2812_STRIP
+	select SPI
+
+config ZMK_RGB_UNDERGLOW_BRT_START
+	default 50
+
+config ZMK_RGB_UNDERGLOW_EFF_START
+	default 3
+
+endif # SHIELD_PALMCTRL_LEFT || SHIELD_PALMCTRL_RIGHT
